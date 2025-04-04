@@ -14,6 +14,8 @@ app.use(express.json());
 const userRoutes = require('../Routes/userRoutes');
 const healthConditionRoutes = require('../Routes/healthConditionRoutes');
 const menuRoutes = require('../Routes/menuRoutes');
+const searchRoutes = require('../Routes/searchRoutes');
+const sortRoutes = require('../Routes/sortRoutes');
 
 // เส้นทางสำหรับสุขภาพ
 app.use('/api', healthConditionRoutes);
@@ -23,6 +25,12 @@ app.use('/api', userRoutes);
 
 // เส้นทางสำหรับเมนู
 app.use('/api', menuRoutes);
+
+// search
+app.use('/api', searchRoutes);
+
+// sort
+app.use('/api' , sortRoutes);
 
 app.listen(5000, () => {
   console.log('Server running on http://localhost:5000');

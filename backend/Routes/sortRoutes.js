@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { addHealthCondition } = require('../Controllers/healthConditionController');
+const { sortMenuByPrice } = require('../Controllers/sortControllers')
 
 // POST: เพิ่มข้อมูลโรค
-router.post('/healthConditions', addHealthCondition); // done
+router.get('/sortMenu', sortMenuByPrice); // inprogress
+
 
 module.exports = router;

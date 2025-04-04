@@ -4,10 +4,10 @@ const { registerUser, loginUser, getUserProfile , updateUser , deleteUser } = re
 const authenticate = require('../Middleware/authMiddleware');  // เพิ่ม middleware
 
 // เส้นทางสำหรับสมัครสมาชิกและเข้าสู่ระบบ
-router.post('/users/register', registerUser);
-router.post('/users/login', loginUser);
-router.put('/users/updateUser' , updateUser);
-router.delete('/users/me', authenticate, deleteUser);
+router.post('/users/register', registerUser); // done
+router.post('/users/login', loginUser); // done
+router.put('/users/updateUser' , updateUser); // done
+router.delete('/users/me', authenticate, deleteUser); // done
 
 
 // เส้นทางสำหรับดูข้อมูลตัวเอง (ต้องการการตรวจสอบ token)
