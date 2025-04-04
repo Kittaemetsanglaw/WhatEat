@@ -44,7 +44,7 @@ router.get('/recommendMenus/:userId', recommendMenus); // done
 
 // เส้นทางสำหรับ Best Seller
 router.post("/bestSellerMenus", newBestSeller); // inprogress
-router.get("/bestSellerMenus", getBestSellerMenus); // inprogress
+router.get("/bestSellerMenus/:id", getBestSellerMenus); // inprogress
 router.put("/bestSellerMenus/:id", updateBestSeller); // inprogress
 router.delete("/bestSellerMenus/:id", deleteBestSeller); // inprogress
 

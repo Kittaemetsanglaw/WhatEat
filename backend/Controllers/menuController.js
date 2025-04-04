@@ -325,7 +325,7 @@ async function getBestSellerMenus(req, res) {
       return res.status(400).json({ error: "ต้องระบุ userId" });
     }
 
-    // ดึงข้อมูล Best Seller Menus โดยอิงจาก userId (ตัวอย่าง: เมนูที่ผู้ใช้เคยสั่ง)
+    // ดึงข้อมูล Best Seller Menus โดยอิงจาก userId (เมนูที่ผู้ใช้เคยสั่ง)
     const bestSellerMenus = await prisma.bestSellerMenu.findMany({
       where: {
         menu: {
@@ -357,7 +357,6 @@ async function getBestSellerMenus(req, res) {
     res.status(500).json({ error: "เกิดข้อผิดพลาดในการดึงข้อมูล Best Seller" });
   }
 }
-
 async function newBestSeller(req, res) {
   try {
     const { restaurantId, menuId } = req.body;
