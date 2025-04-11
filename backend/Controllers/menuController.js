@@ -4,22 +4,45 @@ const prisma = new PrismaClient();
 // เพิ่มเมนู (POST)
 async function addMenu(req, res) {
   try {
-    const { name, description, price, image, restaurantId, nutrition, suitableFor, categoryId } = req.body;
+    const {
+      name,
+      description,
+      price,
+      restaurantId,
+      categoryId,
+      nutrition,
+      suitableFor
+    } = req.body;
+
+    const image = req.file ? req.file.path : null;
+
+    // แปลง suitableFor จาก string เป็น array แบบปลอดภัย
+    let suitableForArray = [];
+    if (suitableFor) {
+      try {
+        suitableForArray = JSON.parse(suitableFor); // เช่น [1,2]
+      } catch (e) {
+        console.warn("suitableFor ไม่ใช่ JSON ที่ถูกต้อง:", suitableFor);
+        suitableForArray = [];
+      }
+    }
 
     const menu = await prisma.menu.create({
       data: {
         name,
         description,
-        price,
+        price: parseFloat(price),
         image,
-        restaurantId,
-        nutrition: {
-          create: nutrition,
-        },
-        suitableFor: {
-          connect: suitableFor.map((id) => ({ id })),
-        },
-        categoryId,
+        restaurantId: parseInt(restaurantId),
+        categoryId: parseInt(categoryId),
+        nutrition: nutrition
+          ? { create: JSON.parse(nutrition) }
+          : undefined,
+        suitableFor: suitableForArray.length
+          ? {
+              connect: suitableForArray.map((id) => ({ id: parseInt(id) })),
+            }
+          : undefined,
       },
       include: {
         nutrition: true,
@@ -29,10 +52,11 @@ async function addMenu(req, res) {
 
     res.status(201).json(menu);
   } catch (error) {
-    console.error(error);
+    console.error('เกิดข้อผิดพลาดในการเพิ่มเมนู:', error);
     res.status(500).json({ error: 'เกิดข้อผิดพลาดในการเพิ่มเมนู' });
   }
 }
+
 
 // แก้ไขเมนู (PUT)
 async function updateMenu(req, res) {

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const upload = require('../Middleware/uploadMiddleware');
 const {
   addMenu,
   updateMenu,
@@ -22,7 +23,7 @@ const {
 } = require('../Controllers/menuController');
 
 // เส้นทางสำหรับเมนู
-router.post('/menus', addMenu); // done
+router.post('/menus', upload.single('image'), addMenu); // done
 router.put('/menus/:id', updateMenu); // inprogress
 router.delete('/menus/:id', deleteMenu); // done
 router.get('/menus/:id', getMenu); // done
