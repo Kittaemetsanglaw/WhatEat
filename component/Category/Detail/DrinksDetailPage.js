@@ -18,7 +18,7 @@ const DrinksDetailPage = ({ route, navigation }) => {
   const handleCheckboxToggle = (name) => {
     setCheckedToppings((prev) => ({
       ...prev,
-      [name]: !prev[name], 
+      [name]: !prev[name],  // เปลี่ยนสถานะการเลือกของ topping
     }));
   };
 

@@ -8,9 +8,9 @@ const DessertDetailPage = ({ route, navigation }) => {
   const [quantity, setQuantity] = useState(1);
 
   const toppings = [
-    { name: 'กิมจิ', price: 30 },
-    { name: 'ไข่ขาว', price: 15 },
-    { name: 'ไข่ต้ม', price: 10 },
+    { name: 'ช็อคชิพ', price: 15 },
+    { name: 'วิปครีม', price: 25 },
+    { name: 'น้ำผึ่ง', price: 15 },
   ];
 
   const [checkedToppings, setCheckedToppings] = useState({});
@@ -18,7 +18,7 @@ const DessertDetailPage = ({ route, navigation }) => {
   const handleCheckboxToggle = (name) => {
     setCheckedToppings((prev) => ({
       ...prev,
-      [name]: !prev[name], 
+      [name]: !prev[name],  // เปลี่ยนสถานะการเลือกของ topping
     }));
   };
 
@@ -29,7 +29,7 @@ const DessertDetailPage = ({ route, navigation }) => {
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Image source={require('../../../assets/icons/Back.png')} style={styles.backIcon} />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>ชื่อเมนู</Text>
+          <Text style={styles.headerTitle}>{dessert.name}</Text>
         </View>
 
         <TouchableOpacity style={styles.heartIconBackground}>
